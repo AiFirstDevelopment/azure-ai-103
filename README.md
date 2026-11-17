@@ -53,20 +53,21 @@ No key is ever used or stored: the code signs in with your `az login` through `D
 `infra/up.sh` gives your account the Foundry User role on the project. `.env` (written by `up.sh`, ignored by git)
 holds names only.
 
-## Check your work
+## Your tutor: check your work, then ask
 
-Build each episode yourself, then check it. Every episode folder has a `check.sh` that compares your subscription
-and your code with what the lesson builds: each check says PASS or FAIL, the exam skill it belongs to, and on a
-FAIL what to look at. It only reads; it changes nothing in Azure.
-
-With [Claude Code](https://claude.com/claude-code), open it in this repository and type:
+Build each episode yourself, then open [Claude Code](https://claude.com/claude-code) in this repository and type:
 
 ```
-/check-lesson s4e1
+/tutor s4e1
 ```
 
-It runs that episode's check and explains anything missing in plain words (`.claude/skills/check-lesson/`). Without
-Claude Code, run the script yourself: `sh ep01_foundry_setup/check.sh`.
+It checks your own Azure work against what the lesson builds (each check PASS or FAIL, tied to its exam skill),
+explains anything missing, and then stays on as the episode's instructor: ask why a step is needed, which option
+fits a scenario, what an error means, or ask it to quiz you. It answers from the episode's brief (`LESSON.md`: the
+exam skills in Microsoft's words, the decisions the exam tests, common failures, Microsoft's pages). One episode per
+conversation: `/clear` before the next one. It never changes anything in Azure (`.claude/skills/tutor/`).
+
+Without Claude Code, the check runs on its own: `sh ep01_foundry_setup/check.sh`, and `LESSON.md` reads as notes.
 
 ## What it costs
 

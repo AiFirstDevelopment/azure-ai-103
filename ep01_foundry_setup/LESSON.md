@@ -1,7 +1,8 @@
 # Episode 1 (tag s4e1): Microsoft Foundry setup and your first model call
 
-The brief `/check-lesson` loads for this episode: what it builds, why, and where Microsoft says so. Answers about
-episode 1 come from this file, the code in this folder, `infra/`, and the pages linked below.
+The instructor's brief `/tutor` loads for this episode: what it builds, why, how the exam asks about it, and where
+Microsoft says so. Answers about episode 1 come from this file, the code in this folder, `infra/`, and the pages
+linked below.
 
 ## The exam skills it covers (Microsoft's words)
 
@@ -44,6 +45,34 @@ April 16, 2026):
   (`get_openai_client()`); one `responses.create` call with the deployment's name as the model. The answer is in
   `output_text`, the token counts in `usage`.
 - **Instant access models (preview)** can be called by name with no deployment; this lesson deploys one.
+
+## How the exam asks about this
+
+The study guide's skills are about choices, so expect scenarios: a requirement, and the option that meets it. The
+decisions this episode teaches, each with the rule that settles it:
+
+- **Which deployment type?** Data must stay in the EU or the US: Data Zone Standard (a data zone) or Standard (one
+  geography). Steady, high, predictable volume with low latency variance: provisioned. Large jobs that can wait up
+  to 24 hours, cheapest: batch. No constraint stated: Global Standard, Microsoft's default advice.
+- **Which role lets an app or a developer call a model in a project, with least privilege?** Foundry User on the
+  project. Owner or Contributor manage resources but carry no data actions, so they don't let you call the model.
+- **Where is access granted?** On the Foundry resource (every project in it) or on one project (just that one). One
+  team's app should get the project.
+- **Where are networking and policies set?** On the Foundry resource, not the project.
+- **How should an app authenticate?** Keyless, with Microsoft Entra ID: `DefaultAzureCredential` locally (your
+  `az login`), a managed identity in Azure. Keys are the thing to avoid.
+- **What does an app need to connect?** The project endpoint and the deployment's name (not the model's catalog
+  name, unless it's an instant access model in preview).
+- **Which portal?** The current Foundry portal for Foundry projects (new work); the classic view only for older
+  hub-based projects.
+
+Questions an instructor might ask you (original, not from the exam):
+
+- Your company's customer data may not leave the European Union. Which deployment type fits, and why not Global
+  Standard?
+- A developer is the subscription's Owner, and her app's keyless call gets a 403. What's missing?
+- Two teams share one Foundry resource. How do you let team A's app call models in its project but not team B's?
+- Overnight, you need to classify a million documents as cheaply as possible. Which deployment type?
 
 ## Common failures
 
