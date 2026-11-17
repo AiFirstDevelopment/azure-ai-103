@@ -1,12 +1,28 @@
+$ az version --query '"azure-cli"' -o tsv
+2.93.0
+$ infra/up.sh
+== resource group rg-ai103 in eastus2
+Succeeded
+== Foundry resource
+Succeeded
+== project ai103
+Succeeded
+== model deployment gpt-5-mini (GlobalStandard, 10)
+Succeeded
+== Foundry User for you on the project (keyless: your az login is the credential)
+(a new role assignment can take a few minutes to apply)
+== ready: project ai103, deployment gpt-5-mini (endpoint written to .env)
+
 $ .venv/bin/python ep01_foundry_setup/first_call.py
-A token is the discrete unit of text a language model operates on—typically a word, subword piece, or character—created by the model's tokenizer and mapped to an integer in its vocabulary. The model converts tokens to embeddings, processes them as a sequence, and predicts probability distributions over the next token during generation.
+A token is a discrete unit of text—often a character, subword, or byte-piece—produced by a tokenizer and mapped to an integer ID that the model uses internally. The language model processes sequences of these token IDs to predict next tokens and generate or interpret text, so how text is tokenized determines its internal representation and length.
 
 project:       ai103
 deployment:    gpt-5-mini (model gpt-5-mini)
 input tokens:  20
-output tokens: 231 (of which reasoning: 128)
-total tokens:  251
-seconds:       6.2
+output tokens: 286 (of which reasoning: 192)
+total tokens:  306
+seconds:       7.8
 
 $ ep01_foundry_setup/check_keyless.sh
+refused: Error code: 403
 refused without the role: yes
