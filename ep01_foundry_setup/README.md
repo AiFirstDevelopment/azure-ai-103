@@ -23,4 +23,7 @@ You should see the question, the model's answer, and the token counts. The run r
 `ep01_foundry_setup/check_keyless.sh` removes your Foundry User role, sets key variables, and shows the same call
 refused; then it puts the role back.
 
+Check your work: `ep01_foundry_setup/check.sh`, or `/check-lesson s4e1` in Claude Code, which explains anything
+missing. Built by hand in the portal instead? Put your resource's name in `.env` as `FOUNDRY_RESOURCE=...` first.
+
 Afterwards: `infra/down.sh`.

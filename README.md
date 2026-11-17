@@ -45,12 +45,28 @@ az login
 python3.12 -m venv .venv && .venv/bin/pip install -r requirements.txt
 infra/up.sh                                   # resource group rg-ai103, a Foundry resource and project, one model
 .venv/bin/python ep01_foundry_setup/first_call.py
+ep01_foundry_setup/check.sh                   # checks your work against the lesson
 infra/down.sh                                 # deletes everything; exits 1 if anything is left
 ```
 
 No key is ever used or stored: the code signs in with your `az login` through `DefaultAzureCredential`, and
 `infra/up.sh` gives your account the Foundry User role on the project. `.env` (written by `up.sh`, ignored by git)
 holds names only.
+
+## Check your work
+
+Build each episode yourself, then check it. Every episode folder has a `check.sh` that compares your subscription
+and your code with what the lesson builds: each check says PASS or FAIL, the exam skill it belongs to, and on a
+FAIL what to look at. It only reads; it changes nothing in Azure.
+
+With [Claude Code](https://claude.com/claude-code), open it in this repository and type:
+
+```
+/check-lesson s4e1
+```
+
+It runs that episode's check and explains anything missing in plain words (`.claude/skills/check-lesson/`). Without
+Claude Code, run the script yourself: `sh ep01_foundry_setup/check.sh`.
 
 ## What it costs
 
