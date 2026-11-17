@@ -1,0 +1,12 @@
+$ .venv/bin/python ep01_foundry_setup/first_call.py
+A token is the discrete unit of text a language model operates on—typically a word, subword piece, or character—created by the model's tokenizer and mapped to an integer in its vocabulary. The model converts tokens to embeddings, processes them as a sequence, and predicts probability distributions over the next token during generation.
+
+project:       ai103
+deployment:    gpt-5-mini (model gpt-5-mini)
+input tokens:  20
+output tokens: 231 (of which reasoning: 128)
+total tokens:  251
+seconds:       6.2
+
+$ ep01_foundry_setup/check_keyless.sh
+refused without the role: yes

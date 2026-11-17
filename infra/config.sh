@@ -10,4 +10,4 @@ CAPACITY=${AI103_CAPACITY:-10}             # thousands of tokens a minute
 FOUNDRY_USER_ROLE=53ca6127-db72-4b80-b1b0-d745d6d5456d   # Foundry User, by id: the role names were renamed in 2026
 ROOT=$(cd "$(dirname "$0")/.." && pwd)
 ENV_FILE="$ROOT/.env"
-[ -f "$ENV_FILE" ] && . "$ENV_FILE"
+if [ -f "$ENV_FILE" ]; then . "$ENV_FILE"; fi
