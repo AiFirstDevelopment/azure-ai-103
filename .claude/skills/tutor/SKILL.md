@@ -17,10 +17,14 @@ answer an exam question yourself.
 3. **Check their work first (free).** Run `sh epNN_*/check.sh` and explain each FAIL from the episode's
    `LESSON.md` (what is missing, why the lesson needs it, the one thing to do next), as `/check` does. Never change
    anything in Azure yourself; give the learner the command.
-4. **Is the tutor connected?** If the `ask_tutor` tool is not available, say: the tutor answers exam questions with
-   sources, 3 a day free; sign up at https://joelstevick.com/learn/ai-103-tutor, then run the one-line
-   `claude mcp add ...` the page shows, and restart Claude Code. Then stop: do not answer exam questions yourself,
-   from memory or from the web.
+4. **Is the tutor connected?** If the `ai-103-tutor` server isn't connected at all, connect it without a key:
+   `claude mcp add --transport http ai-103-tutor https://joelstevick.com/mcp/ai-103`, and restart Claude Code.
+   If `ask_tutor` says it needs a key (or no key is configured), sign the learner up from here: ask for their email
+   address, call `sign_up` with it, and tell them to open the emailed link. After a quick check that they're a
+   person, the page shows their key and the one `claude mcp add ... --header "Authorization: Bearer ..."` line;
+   they run it (it replaces the keyless connection), restart Claude Code, and run `/tutor` again. 3 answers a day are
+   free; they can also ask on https://joelstevick.com/learn/ai-103-tutor once signed in. Until then, stop: do not
+   answer exam questions yourself, from memory or from the web.
 5. **Then the questions.** Invite questions about the episode and the exam. Send each one to `ask_tutor` in the
    learner's own words (with `previous` set to their last question when this one follows on from it). Show the
    tutor's answer and its sources exactly as returned: don't shorten, correct, add to or replace them. If the
@@ -28,4 +32,5 @@ answer an exam question yourself.
    up or the pass is paced, show that message as is.
 6. **A wrong answer.** If the learner says an answer is wrong, call `report_answer` with its answer id and what they
    said, and tell them it was reported.
-7. **Never print secrets**: no keys, connection strings, tokens or the account's email address.
+7. **Never print secrets**: no keys, connection strings or tokens, and never repeat the learner's email address back
+   beyond confirming where the link went.
