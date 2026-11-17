@@ -52,7 +52,7 @@ with `sh infra/doctor.sh`, which anyone can run to see what's ready.
 
 **By hand:** git; Python 3.12 (https://www.python.org/downloads/; Ubuntu 24.04: `apt install python3.12
 python3.12-venv`); the Azure CLI 2.80 or later (https://learn.microsoft.com/cli/azure/install-azure-cli); an Azure
-subscription. Use pay-as-you-go: a free trial subscription gets no quota for OpenAI models, so episode 1's model
+subscription. Use pay-as-you-go: a free trial subscription can have no quota for OpenAI models and cannot ask for more, so episode 1's model
 can't be deployed on it (upgrading the free account keeps its credit). Then:
 
 ```sh

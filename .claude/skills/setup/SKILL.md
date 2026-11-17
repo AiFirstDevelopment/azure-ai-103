@@ -74,8 +74,8 @@ everything passes.
 7. **The subscription.**
    - None: you can't create one. Explain: an Azure account with a pay-as-you-go subscription
      (https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go). The free account
-     (https://azure.microsoft.com/free) gives 200 dollars of credit for 30 days, but a free trial subscription gets
-     no quota for OpenAI models, so episode 1's model can't be deployed on it; upgrading the free account to
+     (https://azure.microsoft.com/free) gives 200 dollars of credit for 30 days, but a free trial subscription can have
+     no quota for OpenAI models and cannot ask for more, so episode 1's model may not deploy on it; upgrading the free account to
      pay-as-you-go keeps the credit. Wait for the learner, then sign in again and check.
    - Several: list them with `az account list --query "[].{name:name, id:id, state:state}" -o table`, ask which one
      the course should use, then `az account set --subscription <id>`.

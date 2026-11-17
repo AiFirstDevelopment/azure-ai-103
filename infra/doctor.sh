@@ -47,7 +47,7 @@ else fail "subscription \"$name\" is enabled (it is $state)" "the Azure portal, 
 
 lim=$(az cognitiveservices usage list -l "$REGION" --query "[?name.value=='OpenAI.GlobalStandard.gpt-5-mini'].limit | [0]" -o tsv 2>/dev/null)
 if [ -n "$lim" ] && [ "${lim%.*}" -gt 0 ] 2>/dev/null; then pass "quota for gpt-5-mini Global Standard in $REGION (${lim%.*}K tokens a minute)"
-else fail "quota for gpt-5-mini Global Standard in $REGION (found ${lim:-none})" "free trial subscriptions get no quota for OpenAI models: upgrade to pay-as-you-go (your credit is kept)"; fi
+else fail "quota for gpt-5-mini Global Standard in $REGION (found ${lim:-none})" "a free trial subscription can have no quota for OpenAI models and cannot ask for more: upgrade to pay-as-you-go (your credit is kept)"; fi
 
 notes=$(az rest --method get --url "https://management.azure.com/subscriptions/$id/providers/Microsoft.Consumption/budgets?api-version=2024-08-01" \
   --query "length(value[?properties.notifications && length(values(properties.notifications)[?length(contactEmails || \`[]\`) > \`0\` || length(contactRoles || \`[]\`) > \`0\`]) > \`0\`])" -o tsv 2>/dev/null)
