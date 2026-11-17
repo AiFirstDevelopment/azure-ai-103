@@ -92,4 +92,4 @@ everything passes.
    mention it and move on.
 
 10. **Done.** `sh infra/doctor.sh`: every line should be PASS. Then point them to episode 1: `infra/up.sh`,
-    `.venv/bin/python ep01_foundry_setup/first_call.py`, and `/tutor s4e1` to check their work and ask questions.
+    `.venv/bin/python ep01_foundry_setup/first_call.py`, and `/check s4e1` to check their work.

@@ -23,7 +23,7 @@ You should see the question, the model's answer, and the token counts. The run r
 `ep01_foundry_setup/check_keyless.sh` removes your Foundry User role, sets key variables, and shows the same call
 refused; then it puts the role back.
 
-Your tutor: `/tutor s4e1` in Claude Code checks your work, then answers your questions about this episode and the
-exam (`LESSON.md` is its brief). Without Claude Code: `sh ep01_foundry_setup/check.sh`. Built by hand in the portal instead? Put your resource's name in `.env` as `FOUNDRY_RESOURCE=...` first.
+Check your work: `/check s4e1` in Claude Code runs the check and explains anything missing (`LESSON.md` is its
+brief). Without Claude Code: `sh ep01_foundry_setup/check.sh`. Built by hand in the portal instead? Put your resource's name in `.env` as `FOUNDRY_RESOURCE=...` first.
 
 Afterwards: `infra/down.sh`.
