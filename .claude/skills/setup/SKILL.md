@@ -23,7 +23,9 @@ everything passes.
   the chat, or print the account's email address or a token. Use `--output none` or `--query` on every `az` command
   that would show the signed-in user.
 - **The system decides the commands.** Find it first: `uname -s` (Darwin, Linux) or Windows; on Linux read
-  `/etc/os-release`; WSL shows "microsoft" in `uname -r`.
+  `/etc/os-release`. It is WSL only if `$WSL_DISTRO_NAME` is set or `/proc/sys/fs/binfmt_misc/WSLInterop` exists
+  ("microsoft" in `uname -r` alone isn't enough: Azure's own containers show it too). No browser on this machine
+  (a container, SSH, a server): say that, not WSL.
 
 ## Steps
 
@@ -64,9 +66,10 @@ everything passes.
    - Older than 2.80: `az upgrade --yes` (or the package manager's upgrade).
 
 6. **Sign in.** First `az config set core.login_experience_v2=off` (so login doesn't stop to ask for a subscription).
-   Then ask the learner to type `! az login --output none`: the browser opens and they pick their account. In a
-   container, over SSH or in WSL: `! az login --use-device-code --output none`, and they enter the code shown at
-   the address shown. Check with `az account show --query name -o tsv`.
+   Then ask the learner to type `! az login --output none`: the browser opens and they pick their account. On a
+   machine with no browser (a container, SSH, some WSL setups): `! az login --use-device-code --output none`, and
+   they enter the code shown at the address shown, in a browser on any device. If Azure answers that
+   multi-factor authentication is needed for a tenant, run the same command again with `--tenant <the id it names>`. Check with `az account show --query name -o tsv`.
 
 7. **The subscription.**
    - None: you can't create one. Explain: an Azure account with a pay-as-you-go subscription
