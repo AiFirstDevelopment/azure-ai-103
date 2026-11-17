@@ -35,17 +35,38 @@ All eighteen episodes, in the outline's order. Each is marked out (with its vide
 | 17 | Extract documents: OCR, layout, fields, analyzers | coming | `s4e17` | Extract information by using multimodal pipelines that combine OCR, layout analysis, and field extraction<br>Produce clean, grounded representations to use with agents and RAG by using Content Understanding<br>Implement analyzers for generating structured or markdown outputs for downstream reasoning by using Content Understanding |
 | 18 | The exam itself: the sandbox, the practice assessment, a map of what you built | coming | `s4e18` | Every objective, pointed back to the episode that built it |
 
-## Follow along
+## Set up
 
-You need an Azure subscription (the free account works to start: https://azure.microsoft.com/free), the Azure CLI
-2.80 or later, and Python 3.12.
+**With Claude Code** (a paid Claude plan or an Anthropic Console account): install it (https://code.claude.com/docs/en/setup),
+then
 
 ```sh
-az login
-python3.12 -m venv .venv && .venv/bin/pip install -r requirements.txt
+git clone https://github.com/AiFirstDevelopment/azure-ai-103 && cd azure-ai-103 && git checkout s4e1
+claude
+```
+
+and type `/setup`. It installs what's missing (git, Python 3.12, the course's virtual environment and packages, the
+Azure CLI), signs you in to Azure, picks your subscription, checks your model quota and sets a budget, doing each
+step itself where it can and handing you the few it can't: creating the Azure account and entering a card. It ends
+with `sh infra/doctor.sh`, which anyone can run to see what's ready.
+
+**By hand:** git; Python 3.12 (https://www.python.org/downloads/; Ubuntu 24.04: `apt install python3.12
+python3.12-venv`); the Azure CLI 2.80 or later (https://learn.microsoft.com/cli/azure/install-azure-cli); an Azure
+subscription. Use pay-as-you-go: a free trial subscription gets no quota for OpenAI models, so episode 1's model
+can't be deployed on it (upgrading the free account keeps its credit). Then:
+
+```sh
+python3.12 -m venv .venv && .venv/bin/python -m pip install -r requirements.txt
+az login --output none
+sh infra/budget.sh 50                         # alerts to the subscription's owners; it warns, it doesn't stop anything
+sh infra/doctor.sh                            # every line PASS
+```
+
+## Follow along
+
+```sh
 infra/up.sh                                   # resource group rg-ai103, a Foundry resource and project, one model
 .venv/bin/python ep01_foundry_setup/first_call.py
-ep01_foundry_setup/check.sh                   # checks your work against the lesson
 infra/down.sh                                 # deletes everything; exits 1 if anything is left
 ```
 
