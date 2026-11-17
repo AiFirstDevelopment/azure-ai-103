@@ -94,6 +94,14 @@ sources of every answer: Microsoft's documentation and the course's lessons, nev
 connected once: sign up at https://joelstevick.com/learn/ai-103-tutor and run the one-line `claude mcp add ...` the
 page shows. 3 answers a day are free; a pass ($29, 12 months, no subscription) answers as many as you need.
 
+## Practice questions (free)
+
+https://joelstevick.com/learn/ai-103-practice: 320 practice questions of our own, five for every skill in Microsoft's
+study guide, each answer explained with the Microsoft Learn page behind it. Practise one skill area or a mixed set of
+50 weighted like the exam, retest what you missed, and see which episode to watch for what you haven't got right yet.
+Not Microsoft's questions and not the exam's; Microsoft's free practice assessment (https://aka.ms/AI103-PA) is the
+next step.
+
 ## What it costs
 
 Everything lives in one resource group, `rg-ai103`. The Foundry resource and project cost nothing on their own; a
