@@ -11,7 +11,12 @@ az role assignment delete --assignee "$ME" --scope "$PROJECT_ID" --role "$FOUNDR
 export AZURE_OPENAI_API_KEY=not-used AZURE_AI_API_KEY=not-used OPENAI_API_KEY=not-used
 refused=no
 for i in 1 2 3 4 5 6 7 8 9 10; do
-  if ! .venv/bin/python ep01_foundry_setup/first_call.py >/dev/null 2>&1; then refused=yes; break; fi
+  if ! out=$(.venv/bin/python ep01_foundry_setup/first_call.py 2>&1); then
+    refused=yes
+    # the status and the error's code only: the full message names the account and the resource
+    echo "refused: $(echo "$out" | grep -oE "Error code: [0-9]+" | head -1) $(echo "$out" | grep -oE "'code': '[A-Za-z]+'" | head -1)"
+    break
+  fi
   sleep 60
 done
 az role assignment create --role "$FOUNDRY_USER_ROLE" --assignee-object-id "$ME" --assignee-principal-type User --scope "$PROJECT_ID" -o none

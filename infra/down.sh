@@ -16,6 +16,10 @@ for name in $(az cognitiveservices account list-deleted --query "[?tags.course==
   az cognitiveservices account purge --name "$name" --resource-group "$RG" --location "$loc"
 done
 
+# Forget the resource's name, so the next up.sh makes a new one: a Foundry resource re-created under a name just
+# purged answered "The API deployment for this resource does not exist" for over an hour (2026-11-16).
+if [ -f "$ENV_FILE" ]; then grep -v '^FOUNDRY_' "$ENV_FILE" > "$ENV_FILE.tmp"; mv "$ENV_FILE.tmp" "$ENV_FILE"; fi
+
 left=$(az group exists --name "$RG")
 echo "rg-ai103 exists: $left"
 left_deleted=$(az cognitiveservices account list-deleted --query "[?starts_with(name, 'ai103-')].name" -o tsv 2>/dev/null)
