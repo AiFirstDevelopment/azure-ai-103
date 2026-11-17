@@ -21,8 +21,9 @@ answer an exam question yourself.
    `claude mcp add --transport http ai-103-tutor https://joelstevick.com/mcp/ai-103`, and restart Claude Code.
    If `ask_tutor` says it needs a key (or no key is configured), sign the learner up from here: ask for their email
    address, call `sign_up` with it, and tell them to open the emailed link. After a quick check that they're a
-   person, the page shows their key and the one `claude mcp add ... --header "Authorization: Bearer ..."` line;
-   they run it (it replaces the keyless connection), restart Claude Code, and run `/tutor` again. 3 answers a day are
+   person, the page shows their key and the one `claude mcp add ... --header "Authorization: Bearer ..."` line.
+   They first remove the keyless connection (`claude mcp remove ai-103-tutor`; `claude mcp add` refuses a name
+   that already exists), then run the page's line, restart Claude Code, and run `/tutor` again. 3 answers a day are
    free; they can also ask on https://joelstevick.com/learn/ai-103-tutor once signed in. Until then, stop: do not
    answer exam questions yourself, from memory or from the web.
 5. **Then the questions.** Invite questions about the episode and the exam. Send each one to `ask_tutor` in the
