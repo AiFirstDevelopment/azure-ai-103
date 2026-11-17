@@ -74,7 +74,7 @@ No key is ever used or stored: the code signs in with your `az login` through `D
 `infra/up.sh` gives your account the Foundry User role on the project. `.env` (written by `up.sh`, ignored by git)
 holds names only.
 
-## Check your work
+## Check your work (free)
 
 Build each episode yourself, then open [Claude Code](https://claude.com/claude-code) in this repository and type:
 
@@ -84,10 +84,15 @@ Build each episode yourself, then open [Claude Code](https://claude.com/claude-c
 
 It compares your own Azure work with what the lesson builds (each check PASS or FAIL, tied to its exam skill) and
 explains anything missing: what, why the lesson needs it, and what to do next, from the episode's `LESSON.md`. It
-only reads; it never changes anything in Azure (`.claude/skills/check/`). One episode per conversation: `/clear`
-before the next one.
+only reads; it never changes anything in Azure (`.claude/skills/check/`). Without Claude Code, the check runs on its
+own: `sh ep01_foundry_setup/check.sh`.
 
-Without Claude Code, the check runs on its own: `sh ep01_foundry_setup/check.sh`.
+## The exam tutor (3 free answers a day)
+
+`/tutor s4e1` checks your work the same way, then answers your questions about the episode and the exam, with the
+sources of every answer: Microsoft's documentation and the course's lessons, never a guess. It needs the tutor
+connected once: sign up at https://joelstevick.com/learn/ai-103-tutor and run the one-line `claude mcp add ...` the
+page shows. 3 answers a day are free; a pass ($29, 12 months, no subscription) answers as many as you need.
 
 ## What it costs
 
