@@ -36,23 +36,25 @@ def main():
     project = AIProjectClient(endpoint=endpoint, credential=DefaultAzureCredential())
     openai = project.get_openai_client()
 
-    print(f"project:    {endpoint.rsplit('/', 1)[-1]}")
-    print(f"deployment: {deployment}")
-    print(f"question:   {QUESTION}\n")
     start = time.monotonic()
     response = openai.responses.create(model=deployment, input=QUESTION)
     seconds = time.monotonic() - start
 
     print(response.output_text.strip())
-    u = response.usage
-    print(f"\ninput tokens:  {u.input_tokens}")
-    print(f"output tokens: {u.output_tokens}"
-          + (f" (of which reasoning: {u.output_tokens_details.reasoning_tokens})"
-             if getattr(u, "output_tokens_details", None) and u.output_tokens_details.reasoning_tokens else ""))
-    print(f"total tokens:  {u.total_tokens}")
-    print(f"model:         {response.model}")
-    print(f"seconds:       {seconds:.1f}")
+    report(endpoint, deployment, response, seconds)
     return 0
+
+
+def report(endpoint, deployment, response, seconds):
+    """What ran and what it used: the project, the deployment, the model behind it, and the token counts."""
+    u = response.usage
+    reasoning = getattr(getattr(u, "output_tokens_details", None), "reasoning_tokens", 0) or 0
+    print(f"\nproject:       {endpoint.rsplit('/', 1)[-1]}")
+    print(f"deployment:    {deployment} (model {response.model})")
+    print(f"input tokens:  {u.input_tokens}")
+    print(f"output tokens: {u.output_tokens}" + (f" (of which reasoning: {reasoning})" if reasoning else ""))
+    print(f"total tokens:  {u.total_tokens}")
+    print(f"seconds:       {seconds:.1f}")
 
 
 if __name__ == "__main__":
