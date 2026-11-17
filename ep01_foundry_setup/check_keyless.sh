@@ -12,6 +12,8 @@ export AZURE_OPENAI_API_KEY=not-used AZURE_AI_API_KEY=not-used OPENAI_API_KEY=no
 refused=no
 for i in 1 2 3 4 5 6 7 8 9 10; do
   if ! out=$(.venv/bin/python ep01_foundry_setup/first_call.py 2>&1); then
+    # only an authorization refusal counts: a 404 (deployment not ready) or a crash proves nothing
+    echo "$out" | grep -qE "Error code: (401|403)" || { sleep 60; continue; }
     refused=yes
     # the status and the error's code only: the full message names the account and the resource
     echo "refused: $(echo "$out" | grep -oE "Error code: [0-9]+" | head -1) $(echo "$out" | grep -oE "'code': '[A-Za-z]+'" | head -1)"
