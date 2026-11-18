@@ -87,12 +87,12 @@ explains anything missing: what, why the lesson needs it, and what to do next, f
 only reads; it never changes anything in Azure (`.claude/skills/check/`). Without Claude Code, the check runs on its
 own: `sh ep01_foundry_setup/check.sh`.
 
-## The exam tutor (3 free answers a day)
+## The exam tutor (free)
 
 `/tutor s4e1` checks your work the same way, then answers your questions about the episode and the exam, with the
 sources of every answer: Microsoft's documentation and the course's lessons, never a guess. It needs the tutor
 connected once: sign up at https://joelstevick.com/learn/ai-103-tutor and run the one-line `claude mcp add ...` the
-page shows. 3 answers a day are free; a pass ($29, 12 months, no subscription) answers as many as you need.
+page shows. It's free: up to 30 answers a day. You can also ask it on that page once you're signed in.
 
 ## Practice questions (free)
 
