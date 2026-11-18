@@ -20,6 +20,16 @@ infra/up.sh
 You should see the question, the model's answer, and the token counts. The run recorded for the video is
 `transcripts/s4e1-foundry-setup.txt`.
 
+## Talk to it
+
+```sh
+.venv/bin/python ep01_foundry_setup/chat.py
+```
+
+The episode opens on this: the same connection in a loop. Type a question and watch the answer arrive as it is
+written; an empty line quits. It streams (`stream=True`, printing each `response.output_text.delta` with
+`flush=True`, the typewriter effect) and shows a "Thinking..." spinner while the model reasons before its first words.
+
 `ep01_foundry_setup/check_keyless.sh` removes your Foundry User role, sets key variables, and shows the same call
 refused; then it puts the role back.
 
